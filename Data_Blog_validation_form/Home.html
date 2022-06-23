@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title> Home page</title>
+
+</head>
+<style>
+  #B1{
+    background-color: #042331;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+  }
+
+  body {
+    font-family: sans-serif;
+    overflow: hidden;
+    user-select: none;
+			background-image: url("./wallpaperflare.com_wallpaper\ \(7\).jpg");
+   
+  }
+
+  nav .logo {
+    color: white;
+    font-size: 33px;
+    font-weight: bold;
+    line-height: 70px;
+    padding-left: 110px;
+  }
+
+  nav {
+    height: 70px;
+    background: #063247;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, .4);
+  }
+
+  nav ul {
+    float: right;
+    margin-right: 30px;
+  }
+
+  nav ul li {
+    display: inline-block;
+  }
+
+  nav ul li a {
+    color: white;
+    display: block;
+    padding: 0 15px;
+    line-height: 70px;
+    font-size: 20px;
+    background: #063247;
+    transition: .5s;
+  }
+
+  nav ul li a:hover,
+  nav ul li a.active {
+    color: #23dbdb;
+  }
+
+  nav ul ul {
+    position: absolute;
+    top: 85px;
+    border-top: 3px solid #23dbdb;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  nav ul li:hover>ul {
+    top: 70px;
+    opacity: 1;
+    visibility: visible;
+    transition: .3s linear;
+  }
+
+  nav ul ul li {
+    width: 150px;
+    display: list-item;
+    position: relative;
+    border: 1px solid #042331;
+    border-top: none;
+  }
+
+  nav ul ul li a {
+    line-height: 50px;
+  }
+
+  nav ul ul ul {
+    border-top: none;
+  }
+
+  nav ul ul ul li {
+    position: relative;
+    top: -70px;
+    left: 150px;
+  }
+
+  nav ul ul li a i {
+    margin-left: 45px;
+  }
+
+  section {
+    background: url(bg.jpeg);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    margin-top:50%;
+  }
+  .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  padding: 5vw 5vw;
+}
+.grid-container .grid-item{
+  background-color: #090a0a97;
+  margin: 10px;
+  color: white;
+  width:  400px;
+  height: 500 px;
+  border: 5px solid rgba(235, 225, 225, 0.297);
+  padding: 25px;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffffe1;
+}
+#s11{
+  color: #ed6206;
+} 
+#s12{
+  color: #ef9403;
+height: 50px;
+}
+#s13{
+  color: #29b3c2;
+height: 50px;
+}
+#s14{
+  color: #e9e5e9;
+height: 50px;
+}
+#s15{
+  color: #c04040;
+height: 50px;
+}
+#s16{
+  color: #b25a37;
+height: 50px;
+}
+ 
+
+ 
+</style>
+
+<body id="B1">
+  <nav>
+    <label class="logo" id="s11">Sj.Blogger</label>     
+
+    <ul>
+      <li><a class="active" href="#">Home</a></li>
+      <li>
+        <a href="#">Blog type
+          <i class="fas fa-caret-down"></i>
+        </a>
+        <ul>
+          <li><a href="#">Lifestyle blogs.</a></li>
+          <li><a href="#">Photography blogs.</a></li>
+          <li><a href="#">Food blogs.</a></li>
+          <li><a href="#">Travel blogs.</a></li>
+          <li><a href="#">Health and fitness blogs.</a></li>
+        </ul>
+      </li>
+      <li>
+
+        </a>
+        <ul>
+          <li>
+            <a href="#">Others
+              <i class="fas fa-caret-right"></i>
+            </a>
+            <ul>
+              <li><a href="#">Links</a></li>
+              <li><a href="#">Works</a></li>
+              <li><a href="#">Status</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Feedback</a></li>
+       <li><a href="./login.html">Login</a></li>
+       
+    </ul>
+  </nav>
+ <div class="grid-container" id="tbody">
+
+ </div>
+   <script>
+
+
+var arr=[];
+str=JSON.parse(localStorage.getItem('blogdata'));
+output();
+
+ 
+
+
+function output() {
+var tbodyHTML = ` `;
+for (i = 0; i < str.length; i++) {
+  const element = str[i];
+  tbodyHTML += `<div class="grid-item">`;
+    tbodyHTML += `<img src="${element.Image}" width="100%">`; 
+  tbodyHTML += `<b><p id="s12" >${element.Title}</p><b<`;
+  tbodyHTML += `<p id="s13">${element.Description}</p>`;
+  tbodyHTML += `<p id="s14">${element.Subject}</p><br><br><br><br><br>`; 
+  tbodyHTML += `<p id="s15">${element.Name}</p>`;
+  tbodyHTML += `<p id="s16">${element.Date}</p>`;
+   
+  
+  tbodyHTML += `</div>`;
+}
+document.getElementById("tbody").innerHTML = tbodyHTML;
+return true;
+
+}
+
+   </script>
+</body>
+
+</html>

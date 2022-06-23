@@ -1,0 +1,274 @@
+<html>
+
+<head>
+  <title>Registration form</title>
+</head>
+
+<style>
+  #s12 {
+    background-image: url("./wallpaperflare.com_wallpaper.jpg");
+  }
+
+  .H {
+    color: rgb(255, 255, 255);
+    box: shadow 25px;
+    ;
+
+  }
+
+  .form {
+    text-align: center;
+    border-style: ridge;
+    margin-left: 35%;
+    width: 500px;
+    border-radius: 50px;
+    background-color: rgba(18, 17, 16, 0.04);
+    margin-top: 10%;
+  }
+
+  .Bsize {
+    width: 200px;
+    height: 40px;
+    text-align: center;
+
+  }
+
+  input {
+    outline: unset;
+
+  }
+
+  #para1 {
+    margin-top: 0px;
+    color: red;
+    font-size: 12px;
+    display: none;
+  }
+
+  #para2 {
+    margin-top: 0px;
+    color: red;
+    font-size: 12px;
+    display: none;
+  }
+
+  #para3 {
+    margin-top: 0px;
+    color: red;
+    font-size: 12px;
+    display: none;
+  }
+
+  #para4 {
+    margin-top: 0px;
+    color: red;
+    font-size: 12px;
+    display: none;
+  }
+
+  #para5 {
+    margin-top: 0px;
+    color: red;
+    font-size: 12px;
+    display: none;
+  }
+
+  #form_element {
+    margin-bottom: 20px;
+  }
+
+  .table,
+  th,
+  td {
+    border: 2px solid rgb(5, 2, 33);
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+
+    padding: 5px;
+    border-radius: 25px;
+    background-color: rgba(18, 17, 16, 0.04);
+
+  }
+</style>
+
+<body id="s12">
+  <form class="form">
+    <br>
+    <h1 class="H" style="text-align:center;padding-bottom: 8px;">Registration form</h1>
+
+    <div id="form_element">
+      <input onkeyup="Firstname()" class="Bsize" type="text" placeholder="First Name" id="fname">
+      <p id="para1">Please enter name</p>
+    </div>
+
+    <div id="form_element">
+      <input onkeyup="lastname()" class="Bsize" type="text" placeholder="Last Name" id="lname">
+      <p id="para2">please enter name</p>
+    </div>
+
+    <div id="form_element">
+      <input onkeyup="Email()" class="Bsize" type="email" placeholder="Enter Email" id="email">
+      <p id="para3">please enter Email</p>
+    </div>
+
+    <div id="form_element">
+      <input onkeyup="Mobile()" class="Bsize" type="number" placeholder="Enter your Number mobile" id="mobile">
+      <p id="para4">please enter mobile number</p>
+
+    </div>
+
+    <div id="form_element">
+      <input onkeyup="Password()" class="Bsize" type="password" placeholder="Enter your password" id="password">
+      <p id="para5">please enter Password</p>
+
+    </div>
+
+    <div id="form_element">
+      <input type="button" value="submit" onclick="login()" id="submit"> <a href="./login.html">Back</a>
+
+
+
+    </div>
+
+
+  </form>
+  </div>
+</body>
+<script>
+  
+  /*-----------*/
+/*--- First Name --------*/
+  var fname = "";
+  var lname = "";
+  var email = "";
+  var mobile = "";
+  var password = "";
+
+  function Firstname() {
+    fname = document.getElementById("fname").value;
+    if (fname.length < 3 || isNaN(fname) == false) {
+      document.getElementById("fname").style.border = "1px solid red";
+      document.getElementById("para1").style.display = "block";
+      return false;
+
+    }
+    else {
+      document.getElementById("fname").style.border = "1px solid green";
+      document.getElementById("para1").style.display = "none";
+      return true;
+    }
+  }
+
+  /*--- Last Name --------*/
+
+  function lastname() {
+    lname = document.getElementById("lname").value;
+    if (lname.length < 3 || isNaN(fname) == false) {
+      document.getElementById("lname").style.border = "1px solid red";
+      document.getElementById("para2").style.display = "block";
+      return false;
+    }
+    else {
+      document.getElementById("lname").style.border = "1px solid green";
+      document.getElementById("para2").style.display = "none";
+      return true;
+    }
+  }
+
+  /*---  Email --------*/
+
+  function Email() {
+    email = document.getElementById("email").value;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (email === "" || email === "undefined") {
+      document.getElementById("email").style.border = "1px solid red";
+      document.getElementById("para3").style.display = "block";
+      return false;
+    }
+
+    if (re.test(String(email).toLowerCase())) {
+      document.getElementById("email").style.border = "1px solid green";
+      document.getElementById("para3").style.display = "none";
+      return true;
+    }
+    else {
+      document.getElementById("email").style.border = "1px solid red";
+      document.getElementById("para3").style.display = "block";
+      return false;
+    }
+
+
+  }
+
+  /*---   Mobile Name--------*/
+
+  function Mobile() {
+    mobile = document.getElementById("mobile").value;
+    if (mobile.length == 10) {
+      document.getElementById("mobile").style.border = "1px solid green";
+      document.getElementById("para4").style.display = "none";
+      return true;
+
+    }
+    else {
+      document.getElementById("mobile").style.border = "1px solid red";
+      document.getElementById("para4").style.display = "block";
+      return false
+    }
+  }
+
+  /*----- password -----*/
+
+  function Password() {
+    password = document.getElementById("password").value;
+
+    const re = /^(?=.*\d)(?=.*[A-Z]).{8,14}$/
+    if (password === '' || password === 'undefined') {
+      document.getElementById("password").style.border = "1px solid red";
+      document.getElementById("para5").style.display = "block";
+
+      return false
+    }
+    if (re.test(password)) {
+      document.getElementById("password").style.border = "1px solid  green";
+      document.getElementById("para5").style.display = "none";
+      return true;
+    }
+    else {
+      document.getElementById("password").style.border = "1px solid red";
+      document.getElementById("para5").style.display = "block";
+      return false;
+    }
+  }
+
+  
+  /*-----Array stored in Local Storage using JSON------*/
+
+  var userData = JSON.parse(localStorage.getItem("users", userData)) !=null ? JSON.parse(localStorage.getItem("users", userData)) : [];
+
+  function login() {
+    if (Firstname() && lastname() && Email() && Password() && Mobile()) {
+      userData.push({Email:email, Password:password});
+      localStorage.setItem("users", JSON.stringify(userData));
+      window.location.href = "http://127.0.0.1:5500/login.html";
+      return true;
+    }
+    else {
+      Firstname()
+      lastname()
+      Email()
+      Password()
+      Mobile()
+      return false;
+
+    }
+  }
+   
+</script>
+</html>
+
+
+

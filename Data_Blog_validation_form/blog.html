@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<title>from blog page</title>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    
+
+    body {
+      margin-left: 35%;
+      width: 500px;
+      background-color: rgba(18, 17, 16, 0.507);
+      margin-top: 5%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    #H {
+      text-align: center;
+      color: rgb(240, 111, 6);
+      background-color: rgba(0, 0, 0, 0.159);
+
+
+    }
+
+    input[type=text],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      resize: vertical;
+    }
+
+    input[type=submit] {
+      background-color: #f78d02;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+      background-color: #44bd39;
+    }
+
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    } 
+
+    #para1,#para2,#para3,#para4 ,#para5, #para6 {
+      margin-top: 0px;
+      color: red;
+      font-size: 12px;
+      margin-bottom: 16px;
+    } 
+  </style>
+</head>
+
+<body id="s12">
+
+  <div class="container">
+    <h1 id="H">Blog page</h1>
+    <form>
+      <label for="title">Blog Title:</label>
+      <input type="text" id="title" name="title" onkeyup="BlogTitle()" placeholder="Enter your title..">  
+      <p id="para1"></p>
+
+      <label for="Description">Description:</label>
+      <input type="text" id="descrip" name="description" onkeyup="Description()" placeholder="Enter Description..">
+      <p id="para2"></p>
+
+
+      <label for="Name">Author Name:</label>
+      <input type="text" id="aname" name="author" onkeyup="AuthorName()" placeholder="Enter Author Name..">
+      <p id="para3"></p>
+
+      <label for="Date and Time"></label>
+      <input type="datetime-local" onchange=" Date()" id="pdate"><br><br>
+      <p id="para4"></p>
+
+      </select>
+      <label for="subject">Subject</label>
+      <textarea id="subject" name="subject" onkeyup="Subject()" placeholder="Write something.." style="height:100px"></textarea>
+      <p id="para5"></p>
+
+      <input type="file" id="file" onchange="readFile()" name="filename">
+      <p id="para6"></p>
+
+      <input type="button" onclick="login()" value="Submit">
+    </form>
+
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+
+
+      </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+  </table>
+
+  <script>
+
+    var title = "";
+    var description = "";
+    var authorName = "";
+    var subject = "";
+    var date = "";
+    var image = "";
+
+    function BlogTitle() {
+      title = document.getElementById('title').value;
+      var digit = /[0-9]/g;
+      if (title.length < 4 || title.length > 1000 || title.match(digit)) {
+        document.getElementById('para1').innerHTML = "Please fill the BlogTitle";
+        return false;
+      } else {
+        document.getElementById('para1').innerHTML = "";
+        return true;
+      }
+    }
+    function Description() {
+      description = document.getElementById('descrip').value;
+      var digit = /[0-9]/g;
+      if (description.length < 4 || description.length > 1000 || description.match(digit)) {
+        document.getElementById('para2').innerHTML = "Please fill the Description";
+        return false;
+      } else {
+        document.getElementById('para2').innerHTML = "";
+        return true;
+      }
+    }
+    function AuthorName() {
+      authorName = document.getElementById('aname').value;
+      var digit = /[0-9]/g;
+      if (authorName.length < 4 || authorName.length > 100 || authorName.match(digit)) {
+        document.getElementById('para3').innerHTML = "Please fill the AuthorName";
+        return false;
+      } else {
+        document.getElementById('para3').innerHTML = "";
+        return true;
+      }
+    }
+    function Subject() {
+      subject = document.getElementById('subject').value;
+      var digit = /[0-9]/g;
+      if (subject.length < 4 || subject.length > 10000 || subject.match(digit)) {
+        document.getElementById('para4').innerHTML = "Please fill the Date";
+        return false;
+      } else {
+        document.getElementById('para4').innerHTML = "";
+        return true;
+      }
+    }
+
+    function Date() {
+      date = document.getElementById('pdate').value;
+  
+      if (date) {
+        document.getElementById('para5').innerHTML = "";
+        return true;
+
+      } else {
+        document.getElementById('para5').innerHTML = "Please fill the Subject";
+        return false;
+      }
+
+    }
+    var arr = JSON.parse(localStorage.getItem("blogdata")) != null ? JSON.parse(localStorage.getItem("blogdata")) : [];
+    //-----------------------
+
+
+    function readFile() {
+      image=document.getElementById('file');
+      console.log(image.files[0]);
+      if (!image.files || image.files[0]) {
+         return
+      }
+      const FR = new FileReader();
+      FR.addEventListener("load", function (evt) {
+        image = evt.target.result;
+        console.log(image)
+        // document.getElementById("img").src = evt.target.result;
+        // document.getElementById("b64").innerHTML = evt.target.result;
+      });
+      FR.readAsDataURL(image.files[0]);
+    }
+    //----------------------
+    function login() {
+      if (BlogTitle() && Description() && AuthorName() && Subject() && Date()) {
+
+        arr.push({ Title: title, Description: description, Name: authorName, Subject: subject, Date: date, Image: image });
+        Str = JSON.stringify(arr);
+        localStorage.setItem('blogdata', Str);
+        window.location.href = "Home.html";
+        return true;
+      } else {
+        BlogTitle()
+        Description()
+        AuthorName()
+        Subject()
+        Date()
+        return false;
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
